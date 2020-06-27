@@ -7,7 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "index.js",
     "dev": "nodemon index.js"
-  
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +16,7 @@
     "dotenv": "^8.2.0",
     "mongoose": "^5.9.20",
     "ms": "^2.1.2",
+    "nodemon": "^2.0.4",
     "random-puppy": "^1.1.0"
-   }
+  }
 }
