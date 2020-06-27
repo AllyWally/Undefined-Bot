@@ -7,33 +7,33 @@ module.exports = {
     usage: `${(process.env.PREFIX)}warn`
 }
 
-exports.run = async (client, message, args) => {
-    if(!msg.member.hasPermission('MUTE_MEMBERS')) return msg.reply('You can\'t use that!');
+module.exports.run = async (client, message, args) => {
+    if(!message.member.hasPermission('MUTE_MEMBERS')) return message.reply('You can\'t use this command! :(');
 
-    var user = msg.mentions.users.first();
-    if(!user) return msg.reply('You didn\'t mention anyone!');
+    var user = message.mentions.users.first();
+    if(!user) return message.reply('You must mention a user!');
 
     var member; 
 
     try {
-        member = await msg.guild.members.fetch(user);
+        member = await message.guild.members.fetch(user);
     } catch(err) {
         member = null;
     }
-
-    if(!member) return msg.reply('They aren\'t in the server!');
+s
+    if(!member) return message.reply('They aren\'t in the server!');
 
     var reason = args.splice(1).join(' ');
-    if(!reason) return msg.reply('You need to give a reason!');
+    if(!reason) return message.reply('You need to give a reason!');
 
-    var channel = msg.guild.channels.cache.find(c => c.name === 'general');
+    var channel = message.guild.channels.cache.find(c => c.name === 'general');
 
     var embed = new MessageEmbed()
     .setTitle('User Warned')
     .addField('User:', user, true)
-    .addField('By:', msg.author, true)
+    .addField('By:', message.author, true)
     .addField('Reason:', reason)
-    channel.send(log);
+    channel.send(embed);
 
     var embed = new MessageEmbed()
     .setTitle('You were warned!')
@@ -45,5 +45,5 @@ exports.run = async (client, message, args) => {
         console.warn(err);
     }
 
-    msg.channel.send(`**${user}** has been warned by **${msg.author}**!`);
+    message.channel.send(`**${user}** you have been muted for ${reason}**!`);
 }

@@ -8,13 +8,13 @@ module.exports = {
 }
 
 module.exports.run = async (client, message, args) => {
-    if (!message.member.hasPermission("MANAGE_ROLES")) {
+    if (!message.member.hasPermission("MUTE_MEMBERS")) {
       return message.channel.send(
         "You don't have enough permission to use this command!"
       );
     }
 
-    if (!message.guild.me.hasPermission("MANAGE_ROLES")) {
+    if (!message.guild.me.hasPermission("MUTE_MEMBERS")) {
       return message.channel.send("I do not have permission to manage roles.");
     }
 

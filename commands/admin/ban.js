@@ -3,7 +3,7 @@ const { MessageEmbed, Message } = require('discord.js');
 
 module.exports = {
     name: "ban",
-    category: 'moderation',
+    category: 'admin',
     description: 'A command to ban someone from your guild!',
     usage: `${(process.env.PREFIX)}ban <client id or tag>`
 }
@@ -29,4 +29,6 @@ module.exports.run = async (client, message, args) => {
                     .setTimestamp()
                     .setFooter(`${process.env.FOOTER} Moderation`)
                     message.channel.send(ban);
+                    message.delete({ timeout: 3000 });
+                    message.delete({ timeout: 0 })
     }
