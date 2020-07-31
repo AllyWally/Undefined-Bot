@@ -1,22 +1,22 @@
-const { MessageEmbed, Message , client} = require('discord.js');
+const { MessageEmbed, Message, client } = require('discord.js');
 const randomPuppy = require('random-puppy');
 
 module.exports = {
     name: "meme",
     category: 'fun',
-    description: 'Dank Memes!',
-    usage: `${(process.env.PREFIX)}meme`
+    description: 'Get funny memes!',
+    usage: `[p]meme`
 }
 
-module.exports.run = async (client, message, args) => {
-    const subReddits = ["memes", "me_url", "dankmemes"]
+module.exports.run = async(client, message, args) => {
+    const subReddits = ["memes", "dankmemes"]
     const random = subReddits[Math.floor(Math.random() * subReddits.length)];
     const img = await randomPuppy(random);
 
     const embed = new MessageEmbed()
-    .setImage(img)
-    .setTitle(`From /r/${random}`)
-    .setURL(`http://reddit.com/${random}`)
-    .setColor(process.env.COLOR)
+        .setImage(img)
+        .setTitle(`From /r/${random}`)
+        .setURL(`https://www.reddit.com/r/memes/${random}`)
+        .setColor(process.env.COLOR)
     message.channel.send(embed)
 }

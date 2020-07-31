@@ -4,23 +4,23 @@ module.exports = {
     name: "coinflip",
     category: 'fun',
     description: 'Will flip heads or tails',
-    usage: `${(process.env.PREFIX)}flip`
+    usage: `[p]flip`
 }
 
-module.exports.run = async (bot, message, args) => {
+module.exports.run = async(bot, message, args) => {
     let result = Math.floor((Math.random() * 2) + 1);
     if (result == 1) {
         coinside = "HEADS";
     } else if (result == 2) {
         conside = "TAILS";
     }
-    
+
     let embedcoin = new MessageEmbed()
-    .setAuthor(message.author.tag)
-    .setColor(process.env.COLOR)
-    .setThumbnail(message.author.avatarURL)
-    .addField("The coin landed on...",coinside + "!");
+        .setAuthor(message.author.tag)
+        .setColor(process.env.COLOR)
+        .setThumbnail(message.author.avatarURL)
+        .addField("The coin landed on...", coinside + "!");
 
     message.channel.send(embedcoin);
-    message.delete({ timeout: 0})
+    message.delete({ timeout: 0 })
 }
